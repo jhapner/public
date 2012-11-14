@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.9'
 gem 'bootstrap-sass'
 gem 'bcrypt-ruby'
 
@@ -9,6 +9,13 @@ gem 'bcrypt-ruby'
 
 gem 'sqlite3'
 gem 'rspec-rails'
+gem 'guard-rspec'
+gem 'guard-spork'
+gem 'spork'
+gem 'capybara'
+gem 'rb-fchange'
+gem 'rb-notifu'
+gem 'win32console'
 
 gem 'json'
 
