@@ -8,6 +8,7 @@ class Board < ActiveRecord::Base
   
   validates :width, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :height, presence: true, numericality: {only_integer: true, greater_than: 0}
-  validates :name, presence: true
-  validates :timezone, presence: true
+  validates :name, presence: true, length: {minimum:1}
+  #http://stackoverflow.com/questions/12343124/how-to-validate-inclusion-of-time-zone
+  validates :timezone, presence: true, inclusion: {in: ActiveSupport::TimeZone.zones_map(&:to_s)}
 end
