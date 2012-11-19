@@ -9,7 +9,7 @@ class Advertisement < ActiveRecord::Base
 
   validates :x_location, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
   validates :y_location, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
-  validates :width, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
-  validates :height, presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 0}
+  validates :width, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :height, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :image, presence: true
 end
