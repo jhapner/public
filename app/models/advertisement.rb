@@ -12,4 +12,12 @@ class Advertisement < ActiveRecord::Base
   validates :width, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :height, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :image, presence: true
+
+ # validate :check_advertisement_boards
+
+ # private
+ #   def check_advertisement_boards
+ #	  if board.width <= (x_location + width)
+ #	    errors.add(:x_location, ''
+ #	end
 end
