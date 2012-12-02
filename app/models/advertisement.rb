@@ -13,11 +13,19 @@ class Advertisement < ActiveRecord::Base
   validates :height, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :image, presence: true
 
- # validate :check_advertisement_boards
+  validate :check_advertisement_board
 
- # private
- #   def check_advertisement_boards
- #	  if board.width <= (x_location + width)
- #	    errors.add(:x_location, ''
- #	end
+  private
+    
+    def check_advertisement_board
+	  if x_location.is_a?(Integer) && y_location.is_a?(Integer) && width.is_a?(Integer) && height.is_a?(Integer)
+		if x_location+width > board.width
+ 	 	  errors.add(:x_location, 'Either ad width, x_location, or the combination is too large')
+	    end
+
+		if y_location+height > board.height
+		  errors.add(:y_location, 'Either ad height, y_location, or the combination is too large') 
+		end
+	  end
+	end
 end
