@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: advertisements
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  board_id   :integer
+#  width      :integer
+#  height     :integer
+#  image      :binary
+#  x_location :integer
+#  y_location :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'spec_helper'
 
 describe Advertisement do

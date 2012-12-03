@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: tiles
+#
+#  id               :integer          not null, primary key
+#  advertisement_id :integer
+#  x_location       :integer
+#  y_location       :integer
+#  cost             :decimal(, )
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  age              :integer
+#  board_id         :integer
+#
+
 class Tile < ActiveRecord::Base
   attr_accessible :x_location, :y_location, :age
   attr_protected :advertisement_id, :cost, :board_id

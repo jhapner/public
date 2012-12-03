@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: boards
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer
+#  name       :string(255)
+#  width      :integer
+#  height     :integer
+#  timezone   :string(255)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  age        :integer
+#
+
 class Board < ActiveRecord::Base
   attr_accessible :height, :name, :timezone, :width, :age
   attr_protected :user_id
