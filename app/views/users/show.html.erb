@@ -6,7 +6,11 @@
         <%= gravatar_for @user %>
 		<%= @user.email %>
 		<%= @user.name %>
-      </h1>
+	  </h1>
+	  <br />
+	  <br />
+	  <%= button_to "Create board", new_board_path, 
+		class: "btn btn-large btn-primary" %>
     </section>	  
   </aside>
 </div>

@@ -1,0 +1,20 @@
+<% provide(:title, @board.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+		  <%= "Height: " + pluralize(@board.height, "tile") %>
+		  <br />
+		  <%= "Width: " + pluralize(@board.width, "tile") %>
+		  <br />
+		  <%= "Created by: " + @board.user.name %>
+		  <br />
+		<%= @board.timezone %>
+	  </h1>
+	  <br />
+	  <br />
+	  <%= button_to "Create advertisement", new_board_path, 
+		class: "btn btn-large btn-primary" %>
+    </section>	  
+  </aside>
+</div>

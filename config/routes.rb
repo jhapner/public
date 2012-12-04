@@ -1,9 +1,11 @@
 ElectronicBulletinBoard::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :boards, only: [:index, :show, :new, :create]
 
   root to: 'static_pages#home'
-
+  
+  match '/boards/new', to: 'boards#new'
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
