@@ -31,6 +31,14 @@ class Advertisement < ActiveRecord::Base
 
   validate :check_advertisement_board
 
+  def image_contents=(file)
+  	self.image=file.read
+  end
+
+  def charge
+  end
+  
+
   private
     
     def check_advertisement_board

@@ -13,10 +13,10 @@
 	  <%= f.text_field :height %>
 
 	  <%= f.label :width %>
-	  <%= f.password_field :width %>
+	  <%= f.text_field :width %>
 
 	  <%= f.label :timezone %>
-	  <%= f.collection_select :timezone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
+	  <%= f.time_zone_select(:timezone) %>
       <%= f.submit "Create board", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
