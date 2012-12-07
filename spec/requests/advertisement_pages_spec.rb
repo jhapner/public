@@ -31,8 +31,11 @@ describe "AdvertisementPages" do
 	fill_in 'Width', with: 5
 	fill_in 'X Location', with: 1
 	fill_in 'Y Location', with: 2
-	attach_file 'advertisement_image_contents', Rails.root.join('spec', 'images', '3x5.jpg')
-      end
+	#attach_file 'advertisement_image_contents', 'C:\Users\josh\rails_projects\electronic_bulletin_board\spec\images\3x5.jpg'
+	filename = Rails.root.join('spec', 'images', '3x5.jpg').to_s
+	filename.gsub!(/\//, "\\")
+	attach_file 'advertisement_image_contents', filename
+    end
 
       it 'should create an advertisment' do
 	expect { click_button submit }.to change(Advertisement, :count).by(1)

@@ -4,11 +4,12 @@ class BoardsController < ApplicationController
   before_filter :signed_in, only: [:create]
 
   def index
-  	@boards = Board.paginate(page: params[:page])
+  	@boards = Board.all
   end
 
   def show
 	@board = Board.find(params[:id])
+	@advertisements = @board.advertisements.paginate(page: params[:page], per_page: 1)
   end
 
   def new
@@ -16,8 +17,17 @@ class BoardsController < ApplicationController
   end
 
   def create
-	@board = current_user.boards.build(params[:board])
-	if @board.save
+	@board = current_user.boards.create(params[:board])
+	@advertisement = @board.advertisements.build(params[:advertisement])
+	@advertisement.user = current_user
+	@advertisement.width = @board.width
+	@advertisement.height = @board.height
+	filename = Rails.root.join('spec', 'images', '3x5.jpg').to_s
+	filename.gsub!(/\//, "\\")
+	@advertisement.image_contents=(File.open(filename))
+	@advertisement.x_location = 0
+	@advertisement.y_location = 0
+	if @board.save && @advertisement.save
 	  flash[:success] = "Board created!"
 	  redirect_to @board
 	else

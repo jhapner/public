@@ -1,0 +1,15 @@
+<li>
+    <%= "Height: " + pluralize(advertisement.height, "tile") %>
+    <br />
+    <%= "Width: " + pluralize(advertisement.width, "tile") %>
+	<br />
+    <%= "X Location: " + advertisement.x_location.to_s %>
+	<br />
+    <%= "Y Location: " + advertisement.y_location.to_s %>
+	<br />
+    <%= "Created by: " + advertisement.user.name %>
+    <br />
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(advertisement.created_at) %> ago.
+  </span>
+</li>

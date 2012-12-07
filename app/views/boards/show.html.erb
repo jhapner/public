@@ -1,20 +1,33 @@
 <% provide(:title, @board.name) %>
 <div class="row">
-  <aside class="span4">
+  <aside class="span3">
     <section>
-      <h1>
-		  <%= "Height: " + pluralize(@board.height, "tile") %>
-		  <br />
-		  <%= "Width: " + pluralize(@board.width, "tile") %>
-		  <br />
-		  <%= "Created by: " + @board.user.name %>
-		  <br />
-		<%= @board.timezone %>
+	  <h1>
+		<%= "Board: " + @board.name %>
 	  </h1>
+	  <br />
+		<%= "Height: " + pluralize(@board.height, "tile") %>
+		<br />
+		<%= "Width: " + pluralize(@board.width, "tile") %>
+		<br />
+		<%= "Created by: " + @board.user.name %>
+		<br />
+		<%= @board.timezone %>
+	  <br />
+	  <br />
 	  <br />
 	  <br />
 	  <%= button_to "Create advertisement", new_board_advertisement_path(@board), 
 		class: "btn btn-large btn-primary" %>
     </section>	  
   </aside>
+  <div class="span9">
+    <% if @board.advertisements.any? %>
+      <h3>Advertisements (<%= @board.advertisements.count %>)</h3>
+      <ol class="microposts">
+        <%= render @advertisements %>
+      </ol>
+      <%= will_paginate @advertisements %>
+    <% end %>
+  </div>
 </div>

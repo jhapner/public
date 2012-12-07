@@ -31,6 +31,8 @@ class Advertisement < ActiveRecord::Base
 
   validate :check_advertisement_board
 
+  default_scope order: 'advertisements.created_at DESC'
+
   def image_contents=(file)
   	self.image=file.read
   end

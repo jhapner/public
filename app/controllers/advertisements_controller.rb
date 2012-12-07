@@ -9,7 +9,7 @@ class AdvertisementsController < ApplicationController
 	  @advertisement = @board.advertisements.build(params[:advertisement])
 	  @advertisement.user = current_user
 	  if @advertisement.save
-	 	flash[:success] = "Advertisement created!"
+		flash[:success] = "Advertisement created"
 		redirect_to @board
 	  else
 	  render 'new'
