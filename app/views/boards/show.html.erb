@@ -31,3 +31,8 @@
     <% end %>
   </div>
 </div>
+<div class="ad_container" style="width:<%=@board.width * 64%>px; height:<%=@board.height*64%>px; position: relative;">
+	<% @board.advertisements.each do |f| %>
+		<img src="<%= url_for(controller: "advertisements", action: "show", id: f.id) %>" id="<%= "ad_#{f.id}_image" %>" style="position: absolute; left: <%= f.x_location * 64%>px; top:<%= f.y_location * 64 %>px; width:<%= f.width * 64 %>px; height: <%= f.height * 64 %>px; z-index: <%= f.id %>;">
+	<% end %>
+</div>

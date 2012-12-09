@@ -3,12 +3,17 @@ ElectronicBulletinBoard::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :boards, only: [:index, :show, :new, :create] do
-	resources :advertisements
+	resources :advertisements, only: [:new, :create, :show]
+	resource :payment_details
   end
-  resources :advertisements, only: [:new, :create]
 
+  resources :advertisements, only: [:new, :create] do
+	resources :payment_details
+  end
+  
   root to: 'static_pages#home'
   
+  match '/advertisement/show', to: 'advertisements#show'
   match '/boards/:board_id/advertisements/new', to: 'advertisements#new'
   match '/boards/new', to: 'boards#new'
   match '/signup',  to: 'users#new'

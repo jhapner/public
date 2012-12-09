@@ -10,7 +10,6 @@
 #  timezone   :string(255)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  age        :integer
 #
 
 require 'spec_helper'

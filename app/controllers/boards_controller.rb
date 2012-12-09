@@ -22,12 +22,13 @@ class BoardsController < ApplicationController
 	@advertisement.user = current_user
 	@advertisement.width = @board.width
 	@advertisement.height = @board.height
-	filename = Rails.root.join('spec', 'images', '3x5.jpg').to_s
-	filename.gsub!(/\//, "\\")
-	@advertisement.image_contents=(File.open(filename))
+    filename = Rails.root.join('spec', 'images', '3x5.jpg').to_s
+	@advertisement.image_contents=File.open(filename)
 	@advertisement.x_location = 0
 	@advertisement.y_location = 0
-	if @board.save && @advertisement.save
+	@payment_detail = @board.create_payment_detail
+	@payment_detail.user = current_user
+	if @board.save && @advertisement.save && @payment_detail.save
 	  flash[:success] = "Board created!"
 	  redirect_to @board
 	else

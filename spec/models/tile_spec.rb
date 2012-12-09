@@ -9,7 +9,6 @@
 #  cost             :decimal(, )
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  age              :integer
 #  board_id         :integer
 #
 
