@@ -1,5 +1,7 @@
 ElectronicBulletinBoard::Application.routes.draw do
 
+  get "tiles/update"
+
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :boards, only: [:index, :show, :new, :create] do

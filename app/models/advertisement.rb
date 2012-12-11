@@ -31,13 +31,50 @@ class Advertisement < ActiveRecord::Base
 
   validate :check_advertisement_board
 
-  default_scope order: 'advertisements.created_at DESC'
+  before_create :initialize_advertisement
+  after_create :charge
 
+  def initialize_advertisement
+	t = board.tiles
+	if t.none?
+      (x_location..x_location+(width-1)).each { |x| 
+	    (y_location..y_location+(height-1)).each { |y|
+		  t=tiles.build(x_location: x, y_location: y)
+		  t.board_id = board_id
+		  t.cost=0.0
+		}
+	  }
+	else
+      (x_location..x_location+(width-1)).each { |x| 
+	    (y_location..y_location+(height-1)).each { |y|
+		  t=Tile.find_by_board_id_and_x_location_and_y_location(board.id,x,y)
+		  c = t.cost
+		  t.destroy
+		  t=tiles.build(x_location: x, y_location: y)
+		  t.board_id = board_id
+		  if c==0.0
+		    t.cost=1.0
+		  else
+			t.cost=c*2
+		  end
+		}
+	  }
+	end
+  end
+  
   def image_contents=(file)
   	self.image=file.read
   end
 
   def charge
+	if board.advertisements.count != 1
+	  current_tiles = self.tiles
+	  amount=0
+	  (0..current_tiles.length-1).each { |t|
+		amount+=current_tiles[t].cost
+      }
+	  payment_details.create(user: user, amount: amount)
+	end
   end
   
 

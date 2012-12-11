@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121207213327) do
+ActiveRecord::Schema.define(:version => 20121211031902) do
 
   create_table "advertisements", :force => true do |t|
     t.integer  "user_id"
@@ -48,10 +48,10 @@ ActiveRecord::Schema.define(:version => 20121207213327) do
     t.integer  "advertisement_id"
     t.integer  "x_location"
     t.integer  "y_location"
-    t.decimal  "cost"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.integer  "board_id"
+    t.decimal  "cost",             :precision => 8, :scale => 2
   end
 
   create_table "users", :force => true do |t|

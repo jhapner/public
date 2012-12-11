@@ -26,7 +26,21 @@ class Board < ActiveRecord::Base
   #http://stackoverflow.com/questions/12343124/how-to-validate-inclusion-of-time-zone
   validates :timezone, presence: true, inclusion: {in: ActiveSupport::TimeZone.zones_map(&:to_s)}
 
+  before_create :board_initialize
+
   def age
+	tiles.each do |t|
+	  t.age
+	end
+	advertisements.each do |a|
+	  a.charge
+	end
   end
   
+  def board_initialize
+  	advertisement = advertisements.build(user: user, width: width, height: height, x_location: 0, y_location: 0)
+    filename = Rails.root.join('spec', 'images', '3x5.jpg').to_s
+	advertisement.image_contents=File.open(filename)
+	create_payment_detail(user: user, amount: width*height) 
+  end
 end

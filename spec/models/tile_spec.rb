@@ -6,10 +6,10 @@
 #  advertisement_id :integer
 #  x_location       :integer
 #  y_location       :integer
-#  cost             :decimal(, )
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  board_id         :integer
+#  cost             :decimal(8, 2)
 #
 
 require 'spec_helper'

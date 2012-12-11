@@ -6,15 +6,15 @@
 #  advertisement_id :integer
 #  x_location       :integer
 #  y_location       :integer
-#  cost             :decimal(, )
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  board_id         :integer
+#  cost             :decimal(8, 2)
 #
 
 class Tile < ActiveRecord::Base
   attr_accessible :x_location, :y_location
-  attr_protected :advertisement_id, :cost, :board_id
+  attr_protected :advertisement_id, :board_id, :cost
 
   belongs_to :advertisement
   has_one :board, through: :advertisement
@@ -26,7 +26,8 @@ class Tile < ActiveRecord::Base
   validate :check_tile_advertisement
   
   def age
-  end
+	#self.update_attributes(cost: cost/2)
+  end 
   
   private
     
